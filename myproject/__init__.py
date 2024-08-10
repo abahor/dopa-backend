@@ -22,6 +22,8 @@ db = SQLAlchemy(app)
 Migrate(app, db)
 
 from myproject.student.student import students
+from myproject.admin.admin import admin
 
 app.register_blueprint(students)
+app.register_blueprint(admin)
 

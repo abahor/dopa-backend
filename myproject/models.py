@@ -35,16 +35,16 @@ class UsersModel(db.Model, UserMixin):
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text, nullable=False)
-    choice_1 = db.Column(db.Text, nullable=False)
-    choice_2 = db.Column(db.Text, nullable=False)
-    choice_3 = db.Column(db.Text, nullable=False)
-    choice_4 = db.Column(db.Text, nullable=False)
+    a = db.Column(db.Text, nullable=False)
+    b = db.Column(db.Text, nullable=False)
+    c = db.Column(db.Text, nullable=False)
+    d = db.Column(db.Text, nullable=False)
     right = db.Column(db.Text, nullable=False)
 
     def __init__(self, text, choice_1, choice_2, choice_3, choice_4, right):
         self.text = text
-        self.choice_1 = choice_1
-        self.choice_2 = choice_2
-        self.choice_3 = choice_3
-        self.choice_4 = choice_4
+        self.a = choice_1
+        self.b = choice_2
+        self.c = choice_3
+        self.d = choice_4
         self.right = right
