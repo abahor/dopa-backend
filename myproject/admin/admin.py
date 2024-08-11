@@ -21,10 +21,10 @@ def new_question():
             return "failed", 403
         q = Question(
             text=data["text"],
-            choice_1=data["a"],
-            choice_2=data["b"],
-            choice_3=data["c"],
-            choice_4=data["d"],
+            a=data["a"],
+            b=data["b"],
+            c=data["c"],
+            d=data["d"],
             right=data["right"],
             chapter=data["chapter"],
             subject=data["subject"],
