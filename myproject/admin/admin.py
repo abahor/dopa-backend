@@ -10,18 +10,25 @@ admin = Blueprint("admin", __name__, template_folder="temp", static_folder='stat
 def new_question():
     data = request.get_json()
     try:
-        if data["choice_1"] == "" or data["choice_2"] == "" or data["choice_3"] == "" or data["choice_4"] == "" or len(data["right"]) != 1:
-            print("----------- here ------------- ")
-            print(data["right"])
-            print(len(data["right"]))
-            raise Exception
+        if data["a"] == "" or \
+                data["b"] == "" or \
+                data["c"] == "" or \
+                data["d"] == "" or \
+                len(data["right"]) != 1 or \
+                data["module"] == "" or \
+                data["chapter"] == "" or \
+                data["subject"] == "":
+            return "failed", 403
         q = Question(
             text=data["text"],
-            choice_1=data["choice_1"],
-            choice_2=data["choice_2"],
-            choice_3=data["choice_3"],
-            choice_4=data["choice_4"],
+            choice_1=data["a"],
+            choice_2=data["b"],
+            choice_3=data["c"],
+            choice_4=data["d"],
             right=data["right"],
+            chapter=data["chapter"],
+            subject=data["subject"],
+            module=data["module"],
         )
         db.session.add(q)
         db.session.commit()
@@ -31,5 +38,14 @@ def new_question():
         db.session.rollback()
         return "failed", 403
 
-    # UsersModel.query.all()
 
+@admin.put("/delete-question/<int:i>")
+def delete_question(i):
+    q = Question.query.get_or_404(i)
+    try:
+        db.session.delete(q)
+        db.session.commit()
+        return "success", 200
+    except:
+        db.session.rollback()
+        return "failed", 403

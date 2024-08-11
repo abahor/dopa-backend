@@ -40,11 +40,17 @@ class Question(db.Model):
     c = db.Column(db.Text, nullable=False)
     d = db.Column(db.Text, nullable=False)
     right = db.Column(db.Text, nullable=False)
+    module = db.Column(db.Text, nullable=False)
+    chapter = db.Column(db.Text, nullable=False)
+    subject = db.Column(db.Text, nullable=False)
 
-    def __init__(self, text, choice_1, choice_2, choice_3, choice_4, right):
+    def __init__(self, text, choice_1, choice_2, choice_3, choice_4, right, module, subject, chapter):
         self.text = text
         self.a = choice_1
         self.b = choice_2
         self.c = choice_3
         self.d = choice_4
         self.right = right
+        self.module = module
+        self.chapter = chapter
+        self.subject = subject
